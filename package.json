@@ -1,19 +1,21 @@
 {
   "name": "ootb-express-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Yet another simple express app generator with typescript support",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "repository": {
+    "type": "git",
     "url": "https://github.com/RubyKozel/OOTB-Express-App-Template.git"
   },
+  "homepage": "https://github.com/RubyKozel/OOTB-Express-App-Template",
   "keywords": [
     "express",
     "ootb"
   ],
-  "author": "",
+  "author": "Ruby Kozel",
   "license": "ISC",
   "dependencies": {
     "cli-progress": "^3.8.2",
