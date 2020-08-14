@@ -6,7 +6,13 @@
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": [],
+  "repository": {
+    "url": "https://github.com/RubyKozel/OOTB-Express-App-Template.git"
+  },
+  "keywords": [
+    "express",
+    "ootb"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,5 +23,14 @@
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0"
-  }
+  },
+  "files": [
+    "templates",
+    "scripts",
+    ".eslintrc.json",
+    "index.js",
+    "package.jsons",
+    "npm-shrinkwrap.json",
+    "README.md"
+  ]
 }
