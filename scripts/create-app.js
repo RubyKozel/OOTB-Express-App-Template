@@ -54,9 +54,9 @@ const installDeps = async (deps, devDeps, dirName) => {
 
 const getEslintrcJson = () => {
     if (ts_support) {
-        return JSON.stringify(require('../templates/ts/ts-eslint-template.json'), null, 2);
+        return require('../templates/ts/ts-eslint-template.json');
     }
-    return JSON.stringify(require('../templates/js/js-eslint-template.json'), null, 2);
+    return require('../templates/js/js-eslint-template.json');
 };
 
 const promptUser = () => {
@@ -119,7 +119,7 @@ const addEslintFile = (dirName) => {
 
 const addTsFiles = (dirName) => {
     console.log('Adding tsconfig.json');
-    fs.writeFileSync(`${ dirName }${ path.sep }tsconfig.json`, JSON.stringify(getTsConfig, null, 2), 'utf8');
+    fs.writeFileSync(`${ dirName }${ path.sep }tsconfig.json`, JSON.stringify(getTsConfig(), null, 2), 'utf8');
 };
 
 const registerCommand = () => {
