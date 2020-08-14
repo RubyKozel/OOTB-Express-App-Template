@@ -21,7 +21,8 @@ This will:
     * eslint
     * eslint-config-airbnb-base
     * eslint-plugin-import
-    * nodemon 
+    * nodemon
+    * dotenv
     * all the extra dev dependencies you specified
 * Configures `.eslintrc.json` file
 * Creates a basic `index.js` file
@@ -39,6 +40,7 @@ The `--ts` option will add typescript support:
     * @types/cors
     * @types/helmet
     * @types/morgan
+    * @types/dotenv
     * @typescript-eslint/eslint-plugin
     * @typescript-eslint/parser
 * Configure .eslintrc.json with typescript support
