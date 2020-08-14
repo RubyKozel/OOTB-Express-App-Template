@@ -10,6 +10,7 @@ const cliProgress = require('cli-progress');
 const commander = require('commander');
 const chalk = require('chalk');
 const packageJson = require('../package.json');
+const editJsonFile = require('edit-json-file');
 
 const jsTemplate = fs.readFileSync(`${ path.dirname(__dirname) + path.sep }templates/js/js-template.txt`);
 const tsTemplate = fs.readFileSync(`${ path.dirname(__dirname) + path.sep }templates/ts/ts-template.txt`);
@@ -21,6 +22,7 @@ const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_cla
 let ts_support;
 let git_support;
 let projectName;
+let test_framework;
 
 const run = async (cwd, command) => {
     await new Promise((resolve, reject) => {
@@ -46,9 +48,9 @@ const install = async (deps, dev, cwd) => {
 };
 
 const installDeps = async (deps, devDeps, dirName) => {
-    console.log(`${ chalk.cyan(`Installing ${ deps.join(' ') }as dependencies, this may take a while...`) }`);
+    console.log(`${ chalk.cyan(`Installing as dependencies:\n${ deps.join('\n') }\nthis may take a while...`) }`);
     await install(deps, false, dirName);
-    console.log(`${ chalk.cyan(`Installing ${ devDeps.join(' ') }as dev-dependencies, this may take a while...`) }`);
+    console.log(`${ chalk.cyan(`Installing as dev-dependencies:\n${ devDeps.join('\n') }\nthis may take a while...`) }`);
     await install(devDeps, true, dirName);
 };
 
@@ -72,6 +74,13 @@ const getInputs = ({ extra_deps, extra_dev_deps }) => {
     if (ts_support) {
         inputs.deps.push(...inputs.tsDeps)
         inputs.devDeps.push(...inputs.tsDevDeps);
+        if (test_framework) {
+            inputs.devDeps.push(...inputs.testDeps[test_framework].ts.devDeps)
+        }
+    } else {
+        if (test_framework) {
+            inputs.devDeps.push(...inputs.testDeps[test_framework].js.devDeps)
+        }
     }
     inputs.deps.push(...extra_deps.trim().toString().split(' '));
     inputs.devDeps.push(...extra_dev_deps.trim().toString().split(' '));
@@ -90,18 +99,29 @@ const createPackageJson = async (dirName) => {
     if (git_support) {
         await run(dirName, 'git init');
     }
+
     await run(dirName, 'npm init -y');
-    const packageJsonTemplate = JSON.parse(fs.readFileSync(`${ dirName }${ path.sep }package.json`).toString());
-    if (ts_support) {
-        packageJsonTemplate.scripts.build = 'tsc -p tsconfig.json';
-        packageJsonTemplate.scripts.start = 'npm run build && ts-node index.js';
-        packageJsonTemplate.scripts.dev = 'nodemon --exec ts-node index.js';
-    } else {
-        packageJsonTemplate.scripts.start = 'node index.js';
-        packageJsonTemplate.scripts.dev = 'nodemon index.js';
+    const packageJsonTemplate = editJsonFile(`${ dirName }${ path.sep }package.json`);
+    let scripts;
+    scripts = {
+        start: ts_support ? 'npm run build && ts-node index.js' : 'node index.js',
+        dev: ts_support ? 'nodemon --exec ts-node index.js' : 'nodemon index.js',
+        lint: 'eslint index.js'
     }
-    packageJsonTemplate.scripts.lint = 'eslint src/ index.js';
-    fs.writeFileSync(`${ dirName }${ path.sep }package.json`, JSON.stringify(packageJsonTemplate, null, 2), 'utf8');
+    if (ts_support) {
+        scripts.build = 'tsc -p tsconfig.json';
+    }
+    if (test_framework === "mocha") {
+        scripts.test = ts_support ?
+            'mocha -r ts-node/register --reporter=xunit --reporter-options output=target/mocha.xml --exit ./test/*.spec.ts' :
+            'mocha --exit ./test/*.spec.ts'
+    } else if (test_framework === "jasmine") {
+        scripts.test = ts_support ?
+            'jasmine -r ts-node/register ./test/*.spec.ts' :
+            'jasmine ./test/*.spec.ts'
+    }
+    packageJsonTemplate.set('scripts', scripts);
+    packageJsonTemplate.save();
 };
 
 const writeScripts = async (dirName) => {
@@ -127,18 +147,31 @@ const registerCommand = () => {
     new commander.Command(packageJson.name)
         .version(packageJson.version)
         .arguments('<project-name>')
-        .option('-t, --ts', 'Adds typescript support')
+        .option('-ts, --typescript', 'Adds typescript support')
         .option('-g, --git', 'Adds git init command')
+        .option('--test <value>', 'specify test framework (jasmine or mocha)')
         .action((name, options) => {
             projectName = name;
-            if (options.ts) {
+            if (options.typescript) {
                 console.log(`${ chalk.green('--ts was specified, adding typescript support') }`);
-                ts_support = options.ts;
+                ts_support = options.typescript;
             }
 
             if (options.git) {
                 console.log(`${ chalk.green('--git was specified, adding git support') }`);
                 git_support = options.git;
+            }
+
+            if (options.test) {
+                if (options.test === "mocha") {
+                    console.log(`${ chalk.green('--test was specified to mocha, adding mocha support') }`);
+                    test_framework = "mocha";
+                } else if (options.test === "jasmine") {
+                    console.log(`${ chalk.green('--test was specified to jasmine, adding jasmine support') }`);
+                    test_framework = "jasmine";
+                } else {
+                    console.log(`${ chalk.yellow('--test was specified with unsupported test framework, add those dependencies yourself') }`);
+                }
             }
         })
         .usage(`${ chalk.green('<project-name>') } [options]`)

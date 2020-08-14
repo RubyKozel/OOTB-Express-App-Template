@@ -11,7 +11,10 @@ Yet another simple express app generator that comes with out-of-the-box typescri
 install globally with `npm i -g ootb-express-app` and then use with `ootb-exprss-app <my-directory-name> [options]`  
 OR (better)  
 run `npx ootb-express-app <my-directory-name> [options]`  
-Options are: `--ts` for typescript support and `--git` for git init command
+Options are: 
+* `-ts, --typescript` for typescript support
+* `-g, --git` for git init command
+* `--test=<framework>` for test framework support (currently supports mocha and jasmine only)
 
 This will:
 * Prompt extra dependencies and extra dev dependencies

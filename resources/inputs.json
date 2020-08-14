@@ -4,7 +4,8 @@
     "helmet",
     "cors",
     "morgan",
-    "dotenv"
+    "dotenv",
+    "cookie-parser"
   ],
   "devDeps": [
     "eslint",
@@ -24,7 +25,42 @@
     "@types/helmet",
     "@types/morgan",
     "@types/dotenv",
+    "@types/cookie-parser",
     "@typescript-eslint/eslint-plugin",
     "@typescript-eslint/parser"
-  ]
+  ],
+  "testDeps": {
+    "mocha": {
+      "js": {
+        "devDeps": [
+          "supertest",
+          "mocha"
+        ]
+      },
+      "ts": {
+        "devDeps": [
+          "supertest",
+          "@types/supertest",
+          "mocha",
+          "@types/mocha"
+        ]
+      }
+    },
+    "jasmine": {
+      "js": {
+        "devDeps": [
+          "supertest",
+          "jasmine"
+        ]
+      },
+      "ts": {
+        "devDeps": [
+          "supertest",
+          "@types/supertest",
+          "jasmine",
+          "@types/jasmine"
+        ]
+      }
+    }
+  }
 }
