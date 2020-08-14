@@ -1,0 +1,28 @@
+{
+  "deps": [
+    "express",
+    "helmet",
+    "cors",
+    "morgan"
+  ],
+  "devDeps": [
+    "eslint",
+    "eslint-config-airbnb-base",
+    "eslint-plugin-import",
+    "nodemon"
+  ],
+  "tsDeps": [
+    "typescript",
+    "ts-node",
+    "tsconfig-paths"
+  ],
+  "tsDevDeps": [
+    "@types/node",
+    "@types/express",
+    "@types/cors",
+    "@types/helmet",
+    "@types/morgan",
+    "@typescript-eslint/eslint-plugin",
+    "@typescript-eslint/parser"
+  ]
+}

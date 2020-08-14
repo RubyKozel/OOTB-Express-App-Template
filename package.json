@@ -1,10 +1,10 @@
 {
   "name": "ootb-express-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Yet another simple express app generator with typescript support",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
+  "bin": {
+    "ootb-express-app": "index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
   "author": "Ruby Kozel",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.0",
     "cli-progress": "^3.8.2",
+    "commander": "^6.0.0",
     "prompt-sync": "^4.2.0"
   },
   "devDependencies": {
@@ -27,6 +29,7 @@
     "eslint-plugin-import": "^2.22.0"
   },
   "files": [
+    "resources",
     "templates",
     "scripts",
     ".eslintrc.json",
