@@ -1,5 +1,9 @@
 # OOTB Express Application
 
+<a href="https://www.npmjs.com/package/ootb-express-app" target="_blank"><img src="https://img.shields.io/npm/v/ootb-express-app.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/package/ootb-express-app" target="_blank"><img src="https://img.shields.io/npm/l/ootb-express-app.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/package/ootb-express-app" target="_blank"><img src="https://img.shields.io/npm/dm/ootb-express-app.svg" alt="NPM Downloads" /></a>
+
 Yet another simple express app generator that comes with out-of-the-box typescript support.
 
 ### Generate simple express template
