@@ -104,12 +104,13 @@ const createPackageJson = async (dirName) => {
     fs.writeFileSync(`${ dirName }${ path.sep }package.json`, JSON.stringify(packageJsonTemplate, null, 2), 'utf8');
 };
 
-const writeScripts = (dirName) => {
+const writeScripts = async (dirName) => {
     fs.mkdirSync(`${ dirName }${ path.sep }src`);
     fs.mkdirSync(`${ dirName }${ path.sep }test`);
     fs.mkdirSync(`${ dirName }${ path.sep }middlewares`);
     fs.writeFileSync(`${ dirName }${ path.sep }index.${ ts_support ? 'ts' : 'js' }`, ts_support ? tsTemplate : jsTemplate, 'utf8');
     fs.writeFileSync(`${ dirName }${ path.sep }middlewares${ path.sep }index.${ ts_support ? 'ts' : 'js' }`, ts_support ? tsMiddlewaresTemplate : jsMiddlewaresTemplate, 'utf8');
+    await run(dirName, `echo PORT=3000 > .env`);
 };
 
 const addEslintFile = (dirName) => {
@@ -155,7 +156,7 @@ const createApp = async () => {
     const dirName = getDirName(projectName);
     await createPackageJson(dirName);
     await installDeps(deps, devDeps, dirName);
-    writeScripts(dirName);
+    await writeScripts(dirName);
     addEslintFile(dirName);
     if (ts_support) {
         addTsFiles(dirName);

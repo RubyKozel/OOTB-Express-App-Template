@@ -2,9 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const { config } = require('dotenv');
 const { errorHandler } = require('./middlewares');
 
 const app = express();
+
+config();
 
 app.use(cors());
 app.use(helmet());
@@ -20,5 +23,5 @@ app.get('/', (req, res) => {
 
 app.use(errorHandler);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Listening on port ${port}`));

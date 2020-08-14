@@ -2,9 +2,12 @@ import * as express from 'express';
 import * as cors from 'cors';
 import helmet from 'helmet';
 import * as morgan from 'morgan';
+import { config } from 'dotenv';
 import { errorHandler } from './middlewares';
 
 const app = express();
+
+config();
 
 app.use(cors());
 app.use(helmet());
@@ -20,5 +23,5 @@ app.get('/', (req: any, res: any) => {
 
 app.use(errorHandler);
 
-const port: number = parseInt(process.env.PORT || '3000', 10);
+const port: number = parseInt(process.env.PORT, 10);
 app.listen(port, () => console.log(`Listening on port ${port}`));

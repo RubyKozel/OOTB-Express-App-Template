@@ -3,7 +3,8 @@
     "express",
     "helmet",
     "cors",
-    "morgan"
+    "morgan",
+    "dotenv"
   ],
   "devDeps": [
     "eslint",
@@ -22,6 +23,7 @@
     "@types/cors",
     "@types/helmet",
     "@types/morgan",
+    "@types/dotenv",
     "@typescript-eslint/eslint-plugin",
     "@typescript-eslint/parser"
   ]
