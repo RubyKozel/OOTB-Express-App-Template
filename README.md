@@ -23,6 +23,7 @@ This will:
     * helmet
     * cors
     * morgan
+    * cookie-parser
     * all the extra dependencies you specified
 * Installs ad dev-dependencies:
     * eslint
@@ -48,8 +49,19 @@ The `--ts` option will add typescript support:
     * @types/helmet
     * @types/morgan
     * @types/dotenv
+    * @types/cookie-parser
     * @typescript-eslint/eslint-plugin
     * @typescript-eslint/parser
 * Configure .eslintrc.json with typescript support
 * Creates a basic `index.ts` file
 * Creates a basic middlewares file
+
+if `--test` command specified, it also installs:
+As JS dev-dependencies:
+* supertest
+* mocha/jasmine
+As TS dev-dependencies:
+* supertest
+* mocha/jasmine
+* @types/mocha or @types/jasmine
+
