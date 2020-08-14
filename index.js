@@ -1,0 +1,1 @@
+require('./scripts/create-app')();

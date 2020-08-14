@@ -1,0 +1,8 @@
+// eslint-disable-next-line import/prefer-default-export
+export const errorHandler = (err, req, res, next) => {
+  if (err) {
+    res.status(err.status || 500).send(err.message || 'Internal server error');
+  } else {
+    next();
+  }
+};
