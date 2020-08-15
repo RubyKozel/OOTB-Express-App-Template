@@ -4,7 +4,7 @@
   "description": "Yet another simple express app generator with typescript support",
   "main": "index.js",
   "bin": {
-    "ootb-express-app": "index.js"s
+    "ootb-express-app": "index.js"
   },
   "repository": {
     "type": "git",
