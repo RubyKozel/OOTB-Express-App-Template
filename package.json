@@ -1,10 +1,10 @@
 {
   "name": "ootb-express-app",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Yet another simple express app generator with typescript support",
   "main": "index.js",
   "bin": {
-    "ootb-express-app": "index.js"
+    "ootb-express-app": "index.js"s
   },
   "repository": {
     "type": "git",
