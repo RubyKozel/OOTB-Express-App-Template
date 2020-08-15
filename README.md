@@ -64,11 +64,12 @@ The `--ts` option will add typescript support:
 * Creates a basic `index.ts` file
 * Creates a basic middlewares file
 
-if `--test` command specified, it also installs:
-As JS dev-dependencies:
+if `--test` command specified, it also installs:  
+As JS dev-dependencies:  
 * supertest
-* mocha/jasmine
-As TS dev-dependencies:
+* mocha/jasmine  
+
+As TS dev-dependencies:  
 * supertest
 * mocha/jasmine
 * @types/mocha or @types/jasmine
