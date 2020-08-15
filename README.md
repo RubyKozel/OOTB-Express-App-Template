@@ -3,8 +3,12 @@
 <a href="https://www.npmjs.com/package/ootb-express-app" target="_blank"><img src="https://img.shields.io/npm/v/ootb-express-app.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/package/ootb-express-app" target="_blank"><img src="https://img.shields.io/npm/l/ootb-express-app.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/package/ootb-express-app" target="_blank"><img src="https://img.shields.io/npm/dm/ootb-express-app.svg" alt="NPM Downloads" /></a>
-
-Yet another simple express app generator that comes with out-of-the-box typescript support.
+<p float="left">
+   <img src="https://miro.medium.com/max/1051/1*q9myzo5Au8OfsaSrCodNmw.png" width=30% height=30%/>
+   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Plus_font_awesome.svg/1200px-Plus_font_awesome.svg.png" width=20% height=20%/>
+   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" width=20% height=20%/>
+</p>
+⚡ Yet another simple express app generator that comes with out-of-the-box typescript support. ⚡
 
 ### Generate simple express template
 
